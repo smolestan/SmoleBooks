@@ -20,4 +20,4 @@ In a Python file called import.py separate from my web application, I have writt
 Please watch my code, website and screencast for more details.
 DATABASE_URL=postgres://zuxjnhjgmubrss:1c57d974aa6e94119282946350ed973d8ecddaa1ef7101572f32c02e214a65ed@ec2-54-221-243-211.compute-1.amazonaws.com:5432/d7cbljb8griqh8
 
-Thank you!
+Thank you! ;)
