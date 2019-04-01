@@ -1,0 +1,73 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    SmoleBooks Book Details Page
+{% endblock %}
+
+{% block body %}
+    <div class="container" py-3>
+        <!-- Provide info about book -->
+      <h1>Book Page <br></h1>
+      <h3><small>Book ISBN:</small> {{ result[0] }}</h3>
+      <h3><small>Book title:</small> {{ result[1] }}</h3>
+      <h3><small>Book author:</small> {{ result[2] }}</h3>
+      <h3><small>Book year:</small> {{ result[3] }}</h3>
+      <h3><small>GoodReads average rating:</small> {{ average_rating }}</h3>
+      <h3><small>GoodReads ratings count:</small> {{ ratings_count }}</h3>
+
+        <!-- Provide table with existing reviews on book if exists -->
+      {% if reviews: %}
+        <div class="container py-3">
+        <h3>List of reviews to this book:</h3>
+        
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Username</th>
+                <th scope="col">Rating</th>
+                <th scope="col">Opinion</th>
+            </tr>
+            </thread>
+            <tbody>
+            {% for row in reviews: %}
+                <tr>
+                {% for i in range (0, 3) %}
+                    <td>{{ row[i] }}</a></td>
+                {% endfor %}
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        </div>
+
+        <!-- If nobody has left any reviews to this book yet, inform user about it -->
+    {% else %}
+        <h3>No one has left a review on this book yet</h3>
+    {% endif %}
+
+        <!-- If current user has already left a review to this book before inform him about it -->
+    {% if review %}
+        <h3>You have already posted a review on this book</h3>
+
+        <!-- If not, give him a form to add a review -->
+    {% else %}
+        <h3>You can add a review for this book</h3>
+
+        <!-- The form -->
+        {% from "includes/_formhelpers.html" import render_field %}
+        <form id="review" method="POST">
+            <!-- radio field -->
+            <div class="form-group">
+                {{ render_field(form.rating, class_="form-control") }}
+            </div>
+            <!-- text area field -->
+            <div class="form-group">
+                    {{ render_field(form.opinion, class_="form-control") }}
+                </div>
+            <p><input class="btn btn-primary" type="submit" value="Submit">
+        </form>
+    {% endif %}
+    </div>
+      
+    
+{% endblock %}

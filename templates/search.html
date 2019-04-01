@@ -1,0 +1,59 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    SmoleBooks Search Page
+{% endblock %}
+
+{% block body %}
+    <div class="container" py-3>
+      <!-- Greeting the user using his username -->
+      <h1>Dear {{session.username}} <br><small>Please enter search values to perform search</small></h1>
+      <!-- Search form -->
+      <form action="" method="POST">
+        <div class="form-group">
+          <label>ISBN</label>
+          <input type="text" name="isbn" placeholder="Type ISBN of the book here" class="form-control" value={{request.form.isbn}}>
+        </div>
+        <div class="form-group">
+            <label>Title</label>
+            <input type="text" name="title" placeholder="Or type name of the book here" class="form-control" value={{request.form.title}}>
+        </div>
+        <div class="form-group">
+            <label>Author</label>
+            <input type="text" name="author" placeholder="Or type name of the author of the book here" class="form-control" value={{request.form.author}}>
+        </div>
+        <button type="submit" class="btn btn-primary">Search</button>
+      </form>
+    </div>
+
+    <!-- In case of positive search results showing them in section below -->
+    {% if results: %}
+    <div class="container py-3">
+      <h3>List of books found, please choose one for more details:</h3>
+      
+      <!-- Creating table of search results -->
+      <table id="search" class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">ISBN</th>
+            <th scope="col">Title</th>
+            <th scope="col">Author</th>
+            <th scope="col">Year</th>
+          </tr>
+        </thread>
+        <tbody>
+          <!-- Creating rows of search results -->
+          {% for row in results: %}
+            <tr>
+              <!-- Fill in data for search results row columns  -->
+              {% for i in range (0, 4) %}
+                <td><a href="/details/{{ row[0] }}">{{ row[i] }}</a></td>
+              {% endfor %}
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% endif %}
+      
+{% endblock %}
