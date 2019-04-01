@@ -1,1 +1,1 @@
-web: gunicorn smolebooks:application
+web: gunicorn application:main
