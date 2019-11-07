@@ -1,4 +1,4 @@
-# Project 1
+SmoleBooks
 
 Web Programming with Python and JavaScript
 
