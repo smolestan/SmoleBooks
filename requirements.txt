@@ -1,7 +1,7 @@
 astroid==2.2.5
 backports.shutil-get-terminal-size==1.0.0
 backports.shutil-which==3.5.2
-certifi==2019.3.9
+certifi==2022.12.7
 chardet==3.0.4
 Click==7.0
 Flask==1.0.2
